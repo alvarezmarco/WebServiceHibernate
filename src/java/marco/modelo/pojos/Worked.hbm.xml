@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 18, 2017 4:04:39 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="marco.modelo.pojos.Worked" table="worked" schema="uoc_bugdb" optimistic-lock="version">
+        <composite-id name="id" class="marco.modelo.pojos.WorkedId">
+            <key-property name="dniNumber" type="string">
+                <column name="dni_number" length="10" />
+            </key-property>
+            <key-property name="initDate" type="timestamp">
+                <column name="init_date" length="29" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="company" class="marco.modelo.pojos.Company" fetch="select">
+            <column name="cif_code" length="9" not-null="true" />
+        </many-to-one>
+        <many-to-one name="person" class="marco.modelo.pojos.Person" update="false" insert="false" fetch="select">
+            <column name="dni_number" length="10" not-null="true" />
+        </many-to-one>
+        <property name="endDate" type="timestamp">
+            <column name="end_date" length="29" />
+        </property>
+        <property name="salary" type="java.lang.Integer">
+            <column name="salary" />
+        </property>
+    </class>
+</hibernate-mapping>

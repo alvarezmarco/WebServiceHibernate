@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 18, 2017 4:04:39 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="marco.modelo.pojos.Person" table="person" schema="uoc_bugdb" optimistic-lock="version">
+        <id name="dniNumber" type="string">
+            <column name="dni_number" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="firstName" type="string">
+            <column name="first_name" length="20" not-null="true" />
+        </property>
+        <property name="surname" type="string">
+            <column name="surname" length="20" not-null="true" />
+        </property>
+        <property name="gender" type="char">
+            <column name="gender" length="1" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="10" not-null="true" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" length="20" not-null="true" />
+        </property>
+        <property name="dateOfBirth" type="date">
+            <column name="date_of_birth" length="13" not-null="true" />
+        </property>
+        <set name="workeds" table="worked" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="dni_number" length="10" not-null="true" />
+            </key>
+            <one-to-many class="marco.modelo.pojos.Worked" />
+        </set>
+        <set name="interviews" table="interview" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="dni_number" length="10" not-null="true" />
+            </key>
+            <one-to-many class="marco.modelo.pojos.Interview" />
+        </set>
+    </class>
+</hibernate-mapping>
